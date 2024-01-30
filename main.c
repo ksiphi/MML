@@ -27,19 +27,19 @@ double exposant(double nombre, double exp) {
   return nombre;
 }
 
-/* //calcul cos(x) avec des fonction maison
-double cosinus(double x) {
-  int n;            // indice de boucle
+/*/ calcul cos(x) avec des fonction maison, pas assez precis
+double cosinustest(double x) {
+  double n;         // indice de boucle
   double res = 1.0; // resultat
 
-  for (n = 1; n <= 20; n++) {
-    res += (exposant(-1.0, n) * exposant(x, 2 * n)) / factorielle(2 * n);
-    printf("%f\n", res); // testeur
+  for (n = 1; n <= 16; n++) {
+    res += (exposant(-1.0, n) * exposant(x, 2.0 * n)) / factorielle(2 * n);
+    // printf("%f\n", res); // testeur
   }
   return res;
 }*/
 
-// calcul cos(x) version précise
+// calcul cos(x) version plus précise
 
 double cosinus(double x) {
   int n;            // indice de boucle
@@ -52,9 +52,20 @@ double cosinus(double x) {
   return res;
 }
 
+// calcul sin(x) version plus précise
+double sinus(double x) {
+  int n;
+  double res = x; // le terme initial pour n=1 est x
+
+  for (n = 1; n <= 16; n++) {
+    res += (pow(-1.0, n) * pow(x, 2 * n + 1)) / factorielle(2 * n + 1);
+    // printf("%.15f\n", res); // testeur
+  }
+  return res;
+}
 int main() {
   // valeur abjectif : 0.70710678118
   printf("ma fonction cosinus de pi/4 = %.015f\n", cosinus(M_PI / 4));
-  printf("ma fonction cosinus de pi/4 = %.015f\n", cos(M_PI / 4));
+  printf("ma fonction llsinus de pi/4 = %.015f\n", sinus(M_PI / 4));
   printf("%f\n", M_PI);
 }
