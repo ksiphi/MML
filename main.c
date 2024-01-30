@@ -12,7 +12,7 @@ int factorielle(int nombre) {
 
 int somme_n_int(int nombre) { return (nombre * (nombre + 1)) / 2; }
 
-float exposant(float nombre, int exp) {
+double exposant(double nombre, double exp) {
   if (exp == 0) {
     return 1;
   }
@@ -24,16 +24,16 @@ float exposant(float nombre, int exp) {
   return nombre;
 }
 
-float cosinus(float x) {
+double cosinus(float x) {
 
-  int n;         // indice de boucle
-  float res = 1; // resultat
+  int n;          // indice de boucle
+  double res = 1; // resultat
 
-  for (n = 1; n <= 10; n++) {
-    res += (pow(-1, n) * pow(x, (2 * n))) / factorielle(2 * n);
+  for (n = 1; n <= 20; n++) {
+    res += (exposant(-1, n) * exposant(x, (2 * n))) / factorielle(2 * n);
     printf("%f\n", res); // testeur
   }
   return res;
 }
 
-int main() {}
+int main() { printf("cosinus de pi/4 = %f", cosinus(3.14159265359 / 4)); }
